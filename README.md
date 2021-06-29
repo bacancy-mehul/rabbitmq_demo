@@ -68,7 +68,7 @@ curl --location --request POST 'http://localhost:1234/api/users' \
 ```
 
 ### Delete user curl 
-API  [http://localhost:1234/api/users/:id](http://localhost:1234/api/users/:id) (POST)
+API  [http://localhost:4567/api/users/:id](http://localhost:1234/api/users/:id) (POST)
 ```curl
 curl --location --request DELETE 'http://localhost:4567/api/users/60daf6d01923fa2540f56869'
 ```
