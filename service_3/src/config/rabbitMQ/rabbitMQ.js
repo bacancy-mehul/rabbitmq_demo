@@ -13,7 +13,6 @@ let connectionRBMQ = async () => await amqp.connect(amqpServer);
     await consumer(connection);
     await publisher(connection);
     console.log("Connected to RabbitMq...");
-
     process.on("beforeExit", () => {
       console.log("closing");
       connection.close();

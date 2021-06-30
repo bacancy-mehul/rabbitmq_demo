@@ -1,11 +1,11 @@
-import { registerUser } from "./user.consumer";
+// import { registerUser } from "./user.consumer";
 
 export const consumer = async (connection) => {
   try {
     const channel = await connection.createChannel();
 
     await channel.assertQueue("userService");
-    await channel.assertQueue("user_created");
+    await channel.assertQueue("user_created", { durable: true });
 
     //** When User Service is come to Live **//
     channel.consume(
@@ -22,14 +22,14 @@ export const consumer = async (connection) => {
       async (data) => {
         let userObject = JSON.parse(data.content.toString());
         console.log("user_created recieved from User Service");
-        await registerUser(userObject);
+        // await registerUser(userObject);
       },
       { noAck: true }
     );
 
-    // //! pubsub
+    //! pubsub
     pubSubConsume1(channel);
-    // //! pubsub
+    //! pubsub
   } catch (ex) {
     console.error(JSON.stringify(ex));
   }
